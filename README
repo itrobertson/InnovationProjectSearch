@@ -4,6 +4,7 @@ This is an Innovation project concept searching for specific niche innovation on
 
 THE PROTOTYPE:
 The demo and supporting documentation provided outlines what it takes to find innovative videos pertaining to shoes from YouTube in Near real-time (NRT).
+See main algorithm, query-shoe.conf
 
 The prototype is designed and built by me (Ian Robertson), and provides a specific detailed analysis of all shoe(s) videos on the Google YouTube API.
 
