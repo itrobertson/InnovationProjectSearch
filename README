@@ -1,0 +1,183 @@
+YOUTUBE Under Armour Innovation Search Project
+
+This is an Innovation project concept searching for specific niche innovation online.
+
+THE PROTOTYPE:
+The demo and supporting documentation provided outlines what it takes to find innovative videos pertaining to shoes from YouTube in Near real-time (NRT).
+
+The prototype is designed and built by me (Ian Robertson), and provides a specific detailed analysis of all shoe(s) videos on the Google YouTube API.
+
+I use scoring as a means of determining statistically whether a newly-uploaded video contains the relevant content (i.e. words) that are directly associated with innovation.
+To do this, I must consider three components of any form of innovation:
+
+  1. Nomenclature
+  2. Anatomy 
+  3. Creative Expressions
+  4. Uniqueness 
+  
+The main part of the "algorithm" explores the concept of leveraging Distance-Vector analysis using a logarithmic scale base10 of key words and phrases commonly associated with innovation.
+
+A Premise for any Search Framework:
+
+An organization searching for a specific product enhancement or feature (Innovation) should leverage an iterative algorithmic search for external knowledge that encompasses situated search paths, analogical search paths, sophisticated search paths, and scientific search paths
+Once a specific instance is found and deemed relevant to the initial objective, 
+I believe that a recursive search pattern should be automated to determine the strength of the iterative search path, 
+and whether any adjustments need to be made to the former.
+
+The "Algorithm":
+
+*Written in Ruby
+*Runs within Logstash, Outputs to Elasticsearch, viewed on Kibana (UI)
+*Performs: Tagging => Preprocessing => parsing => aggregation of terms => by-word parsing then looping => scoring => labeling => insert back into Backend.
+
+Located: /etc/logstash/conf.d/query-shoe.conf
+
+Project Highlights;
+
+1. Setup Server
+2. Installed/upgraded software
+3. Configured applications
+4. Created Dashboards & Visualizations
+5. Created Email and Dashboard Alerting
+6. Developed and ran ingest pipeline
+7. Built data storage, and retrieval process
+
+Shoe Innovation Search:
+
+OBJECTIVES:
+Find videos that express innovative uses pertaining to shoes.
+Identify context, creative expression, innovative components (nomenclature) on various parts of the anatomy.
+
+Creative, Anatomy, Nomenclature (CAN) words/expressions:
+
+Only score CAN words: Creative, Anatomy, Nomenclature
+Usage: per each CAN word in C(sub-i) recursively move to last starter word and count distance for Distance Vector.
+
+Identify distance between critical words and directional word flow pattern.
+
+i.e. “My new welt design” or “This new insole technology I designed” 
+
+
+The Abstract Feed Query:
+
+https://<GoogleAPI>/search?part=snippet&order=date&q=shoe%7Cshoes&relevanceLanguage=en&maxResults=20&fields=items(id,snippet(title,description,channelId,channelTitle,publishedAt,liveBroadcastContent))&type=video&key=<KEY>
+
+
+Terms Consideration Discussion:
+
+Assess what are Positive and Negative Terms.
+Impacts scoring. See, “terms_score” in Kibana.
++1 for positive terms, -1 for negative terms.
+Videos w/ score at or below 0 are typically non-conducive. 
+
+Vital Considerations: 
+Nomenclature
+Anatomy 
+Creative Expressions
+Uniqueness 
+In all probability, a video of a unique innovation will have attributes of all four.
+
+---
+Nomenclature (in this case of a shoe):
+
+Laces, arch, outsole, insole, vamp, welt, eyelet, leather, material, quarter, tongue, feather, lining, seat, shank, throat, waist, puff, upper, lower
+
+---
+Anatomy (of how the user uses a shoe) i.e. End User considerations:
+
+Ankle, arch*, men, women, toes, calf, legs, comfort*, fit, motion, muscles, length, width, health, foot, feet, round, flat, curve
+
+Uniqueness:
+ Creativeness Expressions in use/form of Prepositions, individual, and possessive terms:
+  For, my, mine, I, I am, I’m, you’re, your, man, woman
+
+---
+Creative Expressions:
+  Design, designed, pattern, patent, tech, technology, latest, innovation, idea, create, creation, created, running, develop, developed, tested, test
+
+---
+
+What are the components and functions of a shoe?
+
+  words = ['laces', 'ankle','arch','foot','feet','wear','design','designed','heel','tested','test','outsole','sole','puff','shank','waist','upper','lower','throat','seat','tongue','feather', 'lining','mens','womans','going','completed','muscles','muscle','motion','length','width','health','fitness','vamp','welt','insole','eyelet','toe','toes','leather','material','calf','leg','pattern','quarter','patent','man','men','woman','women','resist','resistant', 'weather','develop','developed','built','comfort','stability', 'grip', 'lacing', 'round', 'flat', 'curve', 'fit', 'tech', 'technology', 'latest', 'lace', 'for', 'running', 'run', 'my', 'new', 'innovation', 'idea', 'create', 'creation', 'created']
+
+What are the negative words that may negate the relevancy of the specific video in question?
+
+example:
+negate_words = [ 'nike', 'brooks', 'collection', 'collect', 'jordan', 'curry','lonzo','lebron','durant','lavar','subscribe','reebok', 'adidas', 'northface', 'newbalance', 'review', 'sale', 'offer', 'live','cheap','ebay','discount','amazon', 'buy', 'top', 'best', 'how', 'free'  ]
+
+How negation works:
+We must asses the negative categories that are disproportionate to our objective of finding innovative shoe videos:
+In theory this can and should be automated, however, automation was not a consideration for this algorithm because of financial and time constraints.
+
+OBJECTIVES:
+Remove Reviews, How-to’s
+Remove Competitors and their references
+Remove sales pitches (free, cheap, ebay, amazon, discount)
+Negate Athletes (Jordan, Curry, LeBron)
+Negate professional channels (subscribe)
+
+---
+Additional things to consider for alerting algorithm:
+
+Frequency : 
+Uses: Occurrences of any given word
+Example: 3 references to Under Armour in Title.
+
+New Term :
+Uses: For finding new uses of specified value
+Example: Finding New Channels in Fitness data.
+
+Spike: 
+Uses: Trending Events 
+Example: Increase in references to “shoe”
+
+The Youtube API:
+
+Allows you to gather videos as they are uploaded to YouTube or search existing content.
+Filter criteria into topics, keyword, relevance, channels, or users
+
+Initial Project Proposal and Design:
+
+(pull data from a broad range of fashion topics)
+
+-General (All new)
+-Lifestyle
+-Fashion
+-Fitness
+-Technology
+-Under Armour Channel
+Competition (Nike, Reebok, Adidas) Channels
+**Topics (General Pipeline Parsing, TBD)
+
+Dashboards in Kibana:
+
+-Home dashboard
+-Alerting history
+-Visualizations
+-Competition
+-Innovation
+-Live Broadcast
+
+Random Additional considerations for integrating:
+
+*Decay function – The distance between key words
+*Propagation – Occurrences, duplicates and synonyms
+*Coercion  - synonyms (spread patterns or numerical analysis into metadata)
+
+
+Innovation precursors:
+A silly easy way to keep your running shoes in top condition.
+https://www.youtube.com/watch?v=uawNiGjAcgY
+Differences Between Hard and Clay Court Tennis Shoes (w/ Bethanie Mattek-Sands)
+https://www.youtube.com/watch?v=MyANkWDXUyQ
+Ladies Gym Trainers Walking Trainers Womens Fitness Lightweight Sports Running Shoes
+A1nxV3WWFg
+Crayola Shoe Studio Unboxing Create Your Own Designer Shoes | Design your Shoes
+Dc6RUdG40Fk
+
+Dr Comfort Diabetic Shoes Men's
+I_jULmsvLlc
+Get inspired - passion and craftmanship for cycling shoes @ Northwave - “The development of a cycling shoe. Inspired by the needs of the athletes and realised with a combination of pure craftmanship and high technology.”
+3RNkEeiIQJ0
+
