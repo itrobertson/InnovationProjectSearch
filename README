@@ -3,12 +3,16 @@ YOUTUBE Under Armour Innovation Search Project
 This is an Innovation project concept searching for specific niche innovation online.
 
 THE PROTOTYPE:
-The demo and supporting documentation provided outlines what it takes to find innovative videos pertaining to shoes from YouTube in Near real-time (NRT).
+The demo and supporting documentation provided outlines what it takes to find innovative videos pertaining to shoes 
+from YouTube in Near real-time (NRT).
 See main algorithm, query-shoe.conf
 
-The prototype is designed and built by me (Ian Robertson), and provides a specific detailed analysis of all shoe(s) videos on the Google YouTube API.
+The prototype is designed and built by me (Ian Robertson), and provides a specific detailed analysis of all shoe(s) videos 
+on the Google YouTube API.
 
-I use scoring as a means of determining statistically whether a newly-uploaded video contains the relevant content (i.e. words) that are directly associated with innovation.
+I use scoring as a means of determining statistically whether a newly-uploaded video contains the relevant content (i.e. words)
+that are directly associated with innovation.
+
 To do this, I must consider three components of any form of innovation:
 
   1. Nomenclature
@@ -16,11 +20,15 @@ To do this, I must consider three components of any form of innovation:
   3. Creative Expressions
   4. Uniqueness 
   
-The main part of the "algorithm" explores the concept of leveraging Distance-Vector analysis using a logarithmic scale base10 of key words and phrases commonly associated with innovation.
+The main part of the "algorithm" explores the concept of leveraging Distance-Vector analysis 
+using a logarithmic scale base10 of key words and phrases commonly associated with innovation.
 
 A Premise for any Search Framework:
 
-An organization searching for a specific product enhancement or feature (Innovation) should leverage an iterative algorithmic search for external knowledge that encompasses situated search paths, analogical search paths, sophisticated search paths, and scientific search paths
+An organization searching for a specific product enhancement or feature (Innovation) should leverage an
+iterative algorithmic search for external knowledge that encompasses situated search paths, analogical search paths, 
+sophisticated search paths, and scientific search paths.
+
 Once a specific instance is found and deemed relevant to the initial objective, 
 I believe that a recursive search pattern should be automated to determine the strength of the iterative search path, 
 and whether any adjustments need to be made to the former.
@@ -29,7 +37,9 @@ The "Algorithm":
 
 *Written in Ruby
 *Runs within Logstash, Outputs to Elasticsearch, viewed on Kibana (UI)
-*Performs: Tagging => Preprocessing => parsing => aggregation of terms => by-word parsing then looping => scoring => labeling => insert back into Backend.
+*Performs:
+Tagging => Preprocessing => parsing => aggregation of terms => by-word parsing then looping => scoring =>
+labeling => insert back into Backend.
 
 Located: /etc/logstash/conf.d/query-shoe.conf
 
@@ -81,7 +91,8 @@ In all probability, a video of a unique innovation will have attributes of all f
 ---
 Nomenclature (in this case of a shoe):
 
-Laces, arch, outsole, insole, vamp, welt, eyelet, leather, material, quarter, tongue, feather, lining, seat, shank, throat, waist, puff, upper, lower
+Laces, arch, outsole, insole, vamp, welt, eyelet, leather, material, quarter, tongue, feather, lining, seat, shank, 
+throat, waist, puff, upper, lower
 
 ---
 Anatomy (of how the user uses a shoe) i.e. End User considerations:
@@ -94,22 +105,33 @@ Uniqueness:
 
 ---
 Creative Expressions:
-  Design, designed, pattern, patent, tech, technology, latest, innovation, idea, create, creation, created, running, develop, developed, tested, test
+  Design, designed, pattern, patent, tech, technology, latest, innovation, idea, create, creation, created, running, 
+  develop, developed, tested, test
 
 ---
 
 What are the components and functions of a shoe?
 
-  words = ['laces', 'ankle','arch','foot','feet','wear','design','designed','heel','tested','test','outsole','sole','puff','shank','waist','upper','lower','throat','seat','tongue','feather', 'lining','mens','womans','going','completed','muscles','muscle','motion','length','width','health','fitness','vamp','welt','insole','eyelet','toe','toes','leather','material','calf','leg','pattern','quarter','patent','man','men','woman','women','resist','resistant', 'weather','develop','developed','built','comfort','stability', 'grip', 'lacing', 'round', 'flat', 'curve', 'fit', 'tech', 'technology', 'latest', 'lace', 'for', 'running', 'run', 'my', 'new', 'innovation', 'idea', 'create', 'creation', 'created']
+  words = ['laces', 'ankle','arch','foot','feet','wear','design','designed','heel','tested','test',
+  'outsole','sole','puff','shank','waist','upper','lower','throat','seat','tongue','feather', 
+  'lining','mens','womans','going','completed','muscles','muscle','motion','length','width',
+  'health','fitness','vamp','welt','insole','eyelet','toe','toes','leather','material','calf',
+  'leg','pattern','quarter','patent','man','men','woman','women','resist','resistant', 'weather',
+  'develop','developed','built','comfort','stability', 'grip', 'lacing', 'round', 'flat', 'curve', 
+  'fit', 'tech', 'technology', 'latest', 'lace', 'for', 'running', 'run', 'my', 'new', 'innovation',
+  'idea', 'create', 'creation', 'created']
 
 What are the negative words that may negate the relevancy of the specific video in question?
 
 example:
-negate_words = [ 'nike', 'brooks', 'collection', 'collect', 'jordan', 'curry','lonzo','lebron','durant','lavar','subscribe','reebok', 'adidas', 'northface', 'newbalance', 'review', 'sale', 'offer', 'live','cheap','ebay','discount','amazon', 'buy', 'top', 'best', 'how', 'free'  ]
+negate_words = [ 'nike', 'brooks', 'collection', 'collect', 'jordan', 'curry','lonzo','lebron',
+'durant','lavar','subscribe','reebok', 'adidas', 'northface', 'newbalance', 'review', 'sale',
+'offer', 'live','cheap','ebay','discount','amazon', 'buy', 'top', 'best', 'how', 'free'  ]
 
 How negation works:
 We must asses the negative categories that are disproportionate to our objective of finding innovative shoe videos:
-In theory this can and should be automated, however, automation was not a consideration for this algorithm because of financial and time constraints.
+In theory this can and should be automated, however, automation was not a consideration for 
+this algorithm because of financial and time constraints.
 
 OBJECTIVES:
 Remove Reviews, How-to’s
@@ -179,6 +201,8 @@ Dc6RUdG40Fk
 
 Dr Comfort Diabetic Shoes Men's
 I_jULmsvLlc
-Get inspired - passion and craftmanship for cycling shoes @ Northwave - “The development of a cycling shoe. Inspired by the needs of the athletes and realised with a combination of pure craftmanship and high technology.”
+Get inspired - passion and craftmanship for cycling shoes @ Northwave -
+“The development of a cycling shoe. Inspired by the needs of the athletes
+and realised with a combination of pure craftmanship and high technology.”
 3RNkEeiIQJ0
 
