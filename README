@@ -24,7 +24,7 @@ An organization searching for a specific product enhancement or feature (Innovat
 Once a specific instance is found and deemed relevant to the initial objective, 
 I believe that a recursive search pattern should be automated to determine the strength of the iterative search path, 
 and whether any adjustments need to be made to the former.
-
+ 
 The "Algorithm":
 
 *Written in Ruby
